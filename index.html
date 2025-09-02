@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>system loading...</title>
+  <style>
+    body { margin:0; padding:0; background:#000; color:#fff; font-family:monospace; overflow:hidden;}
+    #terminal { padding:20px; white-space:pre-wrap; overflow-y:auto; height:100vh; box-sizing:border-box;}
+    .line { margin:0; text-transform:lowercase;}
+    .progress { position:fixed; bottom:0; left:0; width:100%; background:#111; height:14px;}
+    .bar { height:100%; width:0%; background:linear-gradient(90deg,#fff,#aaa); transition:width 0.4s;}
+
+    /* Menu Page */
+    #finalPage, #specialPage {
+      display:none;
+      background:#fff;
+      color:#000;
+      font-family:Arial,sans-serif;
+      text-align:center;
+      padding:40px 20px;
+      height:100vh;
+      box-sizing:border-box;
+    }
+    h2 { margin-bottom:25px; }
+    .link-card {
+      background:#000; color:#fff; padding:20px; margin:15px auto;
+      border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);
+      font-size:18px; font-weight:bold; max-width:300px;
+      cursor:pointer; transition:transform 0.2s;
+    }
+    .link-card:hover { transform:scale(1.05); background:#333; }
+  </style>
+</head>
+<body>
+  <!-- First Page -->
+  <div id="terminal"></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+
+  <!-- Main Menu Page -->
+  <div id="finalPage">
+    <h2>choose your destination</h2>
+    <div class="link-card" onclick="openLink('https://www.instagram.com/_kaya_ll?igsh=MWV1eXM3dndpaW5keA==')">instagram</div>
+    <div class="link-card" onclick="openLink('https://t.me/Kittulove2662')">telegram</div>
+    <div class="link-card" onclick="openLink('upi://pay?pa=9315074312@fam&pn=Payment&am=5&cu=INR')">paid partnership (qr)</div>
+    <div class="link-card" onclick="openLink('https://youtube.com/@kayarajput-1201?si=i0eazaOTBjfrec2T')">youtube</div>
+    <div class="link-card" onclick="showSpecial()">special content</div>
+  </div>
+
+  <!-- Special Content Page -->
+  <div id="specialPage">
+    <h2>special content</h2>
+    <div class="link-card" onclick="openLink('https://onlyfans.com')">onlyfans (click here)</div>
+    <div class="link-card" onclick="openLink('https://tinder.com')">tinder (click here)</div>
+    <div class="link-card" onclick="openLink('https://www.tiktok.com')">tiktok (click here)</div>
+    <div class="link-card" onclick="openLink('https://twitter.com')">twitter (click here)</div>
+    <div class="link-card" onclick="backToMenu()">⬅ back</div>
+  </div>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const terminal=document.getElementById("terminal");
+  const bar=document.getElementById("bar");
+  const lines=[
+    "initializing system...",
+    "loading modules...",
+    "injecting scripts...",
+    "bypassing security...",
+    "accessing files...",
+    "uploading payload...",
+    "establishing connection...",
+    "system breach detected...",
+    "executing sequence...",
+    "finalizing operation..."
+  ];
+  let idx=0;
+  function typeLine(){
+    if(idx<lines.length){
+      const line=document.createElement("div");
+      line.className="line";
+      terminal.appendChild(line);
+      let txt=lines[idx]; let i=0;
+      function typing(){
+        if(i<txt.length){
+          line.textContent+=txt.charAt(i); i++;
+          setTimeout(typing,40);
+        }
+      }
+      typing(); idx++; setTimeout(typeLine,1500);
+    }
+  }
+  typeLine();
+  let width=0; let interval=setInterval(()=>{width+=2; if(width<=100){bar.style.width=width+"%";}},400);
+  setTimeout(()=>{
+    clearInterval(interval);
+    document.getElementById("terminal").style.display="none";
+    document.querySelector(".progress").style.display="none";
+    document.getElementById("finalPage").style.display="block";
+  },20000); // 20 seconds
+});
+
+function openLink(url){ window.open(url,"_blank"); }
+function showSpecial(){ document.getElementById("finalPage").style.display="none"; document.getElementById("specialPage").style.display="block"; }
+function backToMenu(){ document.getElementById("specialPage").style.display="none"; document.getElementById("finalPage").style.display="block"; }
+</script>
+</body>
+</html>

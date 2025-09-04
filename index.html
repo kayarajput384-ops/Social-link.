@@ -1,177 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D Interactive Website</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  body, html {
-    margin: 0; padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background: #111;
-    color: #fff;
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    background: rgba(0,0,0,0.7);
-    z-index: 100;
-  }
-  header a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-  }
-  header a:hover { color: #ff0; }
-  .container {
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .card {
-    background: linear-gradient(45deg, #ff0066, #6600ff);
-    width: 300px; height: 400px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
-    cursor: pointer;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  }
-  .popup {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 200;
-    flex-direction: column;
-    color: #fff;
-    text-align: center;
-  }
-  .popup.active { display: flex; }
-  .popup button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background: #ff0;
-    color: #000;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 10px;
-  }
-  #quotes { margin-top: 50px; text-align: center; font-size: 1.2rem; }
-  #searchBox { margin: 20px auto; display: flex; justify-content: center; }
-  #searchBox input {
-    padding: 10px; border-radius: 10px; border: none; width: 300px;
-  }
-  #paidLabel {
-    position: fixed;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(90deg, #ff0066, #6600ff);
-    padding: 15px 30px;
-    font-weight: bold;
-    border-radius: 20px;
-    display: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 150;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohit Media Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1 class="logo">🌌 Mohit Media Hub</h1>
+    <input type="text" id="searchBar" placeholder="🔍 Search wallpapers, videos...">
+    <nav>
+      <a href="#wallpapers">Wallpapers</a>
+      <a href="#videos">Videos</a>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-<header>
-  <a href="https://www.instagram.com/_maven_ll?igsh=dGszbDZtMDZ5MXhj" target="_blank">Instagram</a>
-  <a href="t.me/Kittulove2662" target="_blank">Telegram</a>
-  <a href="#">Facebook</a>
-  <a href="#">Twitter</a>
-  <a href="#">LinkedIn</a>
-</header>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Next-Level Wallpapers & Videos</h2>
+    <p>Discover. Download. Experience 3D.</p>
+  </section>
 
-<div class="container">
-  <div class="card" id="mainCard">
-    Click Me for Popup
-  </div>
-</div>
+  <!-- Wallpaper Gallery -->
+  <section id="wallpapers" class="gallery">
+    <h2>🖼 Wallpapers</h2>
+    <div class="categories">
+      <button onclick="filterCategory('all')">All</button>
+      <button onclick="filterCategory('nature')">Nature</button>
+      <button onclick="filterCategory('movies')">Movies</button>
+      <button onclick="filterCategory('gaming')">Gaming</button>
+    </div>
+    <div id="wallGrid" class="grid"></div>
+  </section>
 
-<div class="popup" id="popup">
-  <h1>3D Popup Activated!</h1>
-  <p>Check our amazing paid partnerships!</p>
-  <button id="closePopup">Close</button>
-</div>
+  <!-- Video Section -->
+  <section id="videos" class="videos">
+    <h2>📹 Featured Videos</h2>
+    <video controls>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+  </section>
 
-<div id="searchBox">
-  <input type="text" placeholder="Search..." id="searchInput">
-</div>
+  <!-- Tools Section -->
+  <section id="tools" class="tools">
+    <h2>⚙️ Tools</h2>
+    <div class="tool-list">
+      <div class="tool">🎨 Online Editor</div>
+      <div class="tool">📥 Downloader</div>
+      <div class="tool">✨ AI Generator</div>
+    </div>
+  </section>
 
-<div id="quotes"></div>
+  <!-- About -->
+  <section id="about" class="about">
+    <h2>ℹ️ About</h2>
+    <p>Mohit Media Hub is a next-level website with wallpapers, videos, and creative tools — hosted on GitHub Pages.</p>
+  </section>
 
-<div id="paidLabel">💼 Paid Partnership 💼</div>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Mohit Media Hub | Made with ❤️</p>
+    <div class="social">
+      <a href="#">Instagram</a> |
+      <a href="#">YouTube</a> |
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
 
-<audio id="voiceNote" src="voice_note.mp3"></audio>
-
-<script>
-  // 3D card movement
-  const card = document.getElementById('mainCard');
-  document.addEventListener('mousemove', e => {
-    let x = (window.innerWidth / 2 - e.pageX) / 25;
-    let y = (window.innerHeight / 2 - e.pageY) / 25;
-    card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-  });
-
-  // Popup logic
-  const popup = document.getElementById('popup');
-  const closeBtn = document.getElementById('closePopup');
-  card.addEventListener('click', () => {
-    popup.classList.add('active');
-    document.getElementById('voiceNote').play();
-  });
-  closeBtn.addEventListener('click', () => popup.classList.remove('active'));
-
-  // Scroll Paid Partnership
-  window.addEventListener('scroll', () => {
-    const label = document.getElementById('paidLabel');
-    if(window.scrollY > 200) label.style.display = 'block';
-    else label.style.display = 'none';
-  });
-
-  // Quotes
-  const quotesArray = [
-    "Life is what happens when you're busy making other plans.",
-    "The best way to predict the future is to create it.",
-    "Happiness is not something ready made. It comes from your own actions.",
-    "Dream big and dare to fail.",
-    "In the middle of difficulty lies opportunity."
-  ];
-  const quotesDiv = document.getElementById('quotes');
-  setInterval(() => {
-    let randomQuote = quotesArray[Math.floor(Math.random() * quotesArray.length)];
-    quotesDiv.innerText = randomQuote;
-  }, 5000);
-
-  // Simple search functionality
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('keyup', () => {
-    let value = searchInput.value.toLowerCase();
-    quotesDiv.innerHTML = quotesArray.filter(q => q.toLowerCase().includes(value)).join('<br>') || 'No results';
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>

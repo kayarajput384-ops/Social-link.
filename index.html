@@ -1,75 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohit Media Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mohit Media Hub — Pro</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons (simple) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity crossorigin="anonymous"/>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <h1 class="logo">🌌 Mohit Media Hub</h1>
-    <input type="text" id="searchBar" placeholder="🔍 Search wallpapers, videos...">
-    <nav>
-      <a href="#wallpapers">Wallpapers</a>
-      <a href="#videos">Videos</a>
-      <a href="#tools">Tools</a>
-      <a href="#about">About</a>
-    </nav>
+  <header class="nav glass">
+    <div class="nav-left">
+      <div class="logo">
+        <span class="logo-emoji">🌌</span>
+        <div>
+          <div class="brand">Mohit Media Hub</div>
+          <div class="tag">Wallpapers • Videos • Tools</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <div class="search-wrap">
+        <input id="searchInput" placeholder="Search — type keywords (e.g. nature, cars, space, movie posters)"/>
+        <button id="clearSearch" title="Clear"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="hint">Press <kbd>/</kbd> to focus search</div>
+    </div>
+
+    <div class="nav-right">
+      <div class="filters">
+        <select id="categorySelect" aria-label="Category">
+          <option value="all">All categories</option>
+        </select>
+        <select id="sortSelect" aria-label="Sort">
+          <option value="relevant">Most relevant</option>
+          <option value="new">Newest</option>
+          <option value="popular">Popular</option>
+        </select>
+      </div>
+      <button id="uploadBtn" class="btn">Upload</button>
+    </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h2>Next-Level Wallpapers & Videos</h2>
-    <p>Discover. Download. Experience 3D.</p>
-  </section>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Next-level Wallpapers & Video Hub</h1>
+        <p>Search A→Z. Instant previews. Download. Pro-grade UI — no signup required.</p>
+        <div class="quick-tags" id="quickTags"></div>
+      </div>
+      <div class="hero-deco"></div>
+    </section>
 
-  <!-- Wallpaper Gallery -->
-  <section id="wallpapers" class="gallery">
-    <h2>🖼 Wallpapers</h2>
-    <div class="categories">
-      <button onclick="filterCategory('all')">All</button>
-      <button onclick="filterCategory('nature')">Nature</button>
-      <button onclick="filterCategory('movies')">Movies</button>
-      <button onclick="filterCategory('gaming')">Gaming</button>
+    <!-- Controls A–Z -->
+    <section class="azbar">
+      <div id="azContainer"></div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section">
+      <div class="section-head">
+        <h2 id="sectionTitle">Featured</h2>
+        <div class="results-info" id="resultsInfo"></div>
+      </div>
+
+      <div id="grid" class="grid"></div>
+
+      <div id="loadMoreWrap" class="load-more-wrap">
+        <button id="loadMore" class="btn-outline">Load more</button>
+      </div>
+    </section>
+
+    <!-- Tools (placeholder links) -->
+    <section id="tools" class="section small">
+      <h2>Tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="#" onclick="alert('Image Resizer - coming soon')">
+          <i class="fa fa-image"></i><div>Image Resizer</div>
+        </a>
+        <a class="tool-card" href="#" onclick="alert('BG Remover - coming soon')">
+          <i class="fa fa-cut"></i><div>Background Remover</div>
+        </a>
+        <a class="tool-card" href="#" onclick="alert('QRCode - coming soon')">
+          <i class="fa fa-qrcode"></i><div>QR Generator</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div>© 2025 Mohit Media Hub</div>
+        <div class="socials">
+          <a href="#" title="Instagram">Instagram</a>
+          <a href="#" title="YouTube">YouTube</a>
+          <a href="#" title="Twitter">Twitter</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal viewer -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-card glass">
+      <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+      <div id="modalContent" class="modal-content"></div>
+      <div class="modal-actions">
+        <a id="downloadBtn" class="btn" href="#" download>Download</a>
+        <button class="btn-outline" onclick="closeModal()">Close</button>
+      </div>
     </div>
-    <div id="wallGrid" class="grid"></div>
-  </section>
-
-  <!-- Video Section -->
-  <section id="videos" class="videos">
-    <h2>📹 Featured Videos</h2>
-    <video controls>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    </video>
-  </section>
-
-  <!-- Tools Section -->
-  <section id="tools" class="tools">
-    <h2>⚙️ Tools</h2>
-    <div class="tool-list">
-      <div class="tool">🎨 Online Editor</div>
-      <div class="tool">📥 Downloader</div>
-      <div class="tool">✨ AI Generator</div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="about">
-    <h2>ℹ️ About</h2>
-    <p>Mohit Media Hub is a next-level website with wallpapers, videos, and creative tools — hosted on GitHub Pages.</p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Mohit Media Hub | Made with ❤️</p>
-    <div class="social">
-      <a href="#">Instagram</a> |
-      <a href="#">YouTube</a> |
-      <a href="#">Twitter</a>
-    </div>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
